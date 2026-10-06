@@ -7,11 +7,14 @@ from langgraph.checkpoint.postgres import PostgresSaver
 from app.agents.tools import search_knowledge_base
 
 from app.config import POSTGRES_URL
-from app.config import MODEL
+
+from app.config import GEMINI_API_KEY, MODEL
+
 
 llm = ChatGoogleGenerativeAI(
     model=MODEL,
-    temperature=0
+    temperature=0,
+    google_api_key=GEMINI_API_KEY
 )
 
 tools = [search_knowledge_base]

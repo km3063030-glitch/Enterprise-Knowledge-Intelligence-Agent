@@ -1,11 +1,12 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 
+from app.config import GEMINI_API_KEY, MODEL
 
 llm = ChatGoogleGenerativeAI(
-    model="gemini-3.1-flash-lite",
-    temperature=0
+    model=MODEL,
+    temperature=0,
+    google_api_key=GEMINI_API_KEY
 )
-
 
 EVALUATION_PROMPT = """
 You are an expert evaluator for an enterprise RAG system.
