@@ -1,0 +1,24 @@
+fastapi
+uvicorn
+python-dotenv
+langchain
+langchain-community 
+langchain-text-splitters
+langchain-google-genai
+langchain-chroma
+chromadb
+langgraph
+# langgraph-google-genai
+pypdf
+python-multipart
+llama-index
+llama-index-llms-langchain
+llama-index-llms-google-genai
+llama-index-embeddings-google-genai
+
+langgraph-checkpoint-postgres 
+psycopg[binary,pool]
+
+
+
+pytest

@@ -1,0 +1,45 @@
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: rag-postgres
+
+    environment:
+      POSTGRES_USER: raguser
+      POSTGRES_PASSWORD: ragpassword
+      POSTGRES_DB: ragdb
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U raguser -d ragdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+  app:
+    build: .
+
+    container_name: enterprise-rag
+
+    env_file:
+      - .env
+
+    environment:
+      POSTGRES_URL: postgresql://raguser:ragpassword@postgres:5432/ragdb
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+volumes:
+  postgres_data:
